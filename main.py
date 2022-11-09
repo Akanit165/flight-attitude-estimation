@@ -1,10 +1,6 @@
-from math import radians
-import numpy as np
 import serial
-import csv
 import struct
 from math import *
-import matplotlib.pyplot as plt
 import pandas as pd
 from _thread import *
 import os
@@ -12,7 +8,7 @@ from log_data import log_data as log
 
 def receiveData():
     # Create object to receive data from Arduino
-    receiver = serial.Serial(port = "/dev/ttyUSB2", baudrate = 115200)
+    receiver = serial.Serial(port = "/dev/ttyUSB0", baudrate = 115200)
     try:
         i = 1
         start_new_thread(visualize,()) # Plot the attitude
@@ -42,7 +38,7 @@ def receiveData():
         print("=============Finished=============")
     
 def visualize():
-    os.system("python visualization/perf.py")
+    os.system("python visualization/attitude_plot.py")
 
 def main():
     print("Activate attitude monitoring system")
